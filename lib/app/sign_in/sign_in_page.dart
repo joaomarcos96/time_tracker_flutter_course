@@ -10,7 +10,11 @@ class SignInPage extends StatelessWidget {
         title: Text('Time Tracker'),
         elevation: 2,
       ),
-      body: _buildContent(),
+      body: Center(
+        child: SingleChildScrollView(
+          child: _buildContent(),
+        ),
+      ),
       backgroundColor: Colors.grey[200],
     );
   }
@@ -25,7 +29,10 @@ class SignInPage extends StatelessWidget {
           Text(
             'Sign in',
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 32, fontWeight: FontWeight.w600),
+            style: TextStyle(
+              fontSize: 32,
+              fontWeight: FontWeight.w600,
+            ),
           ),
           SizedBox(
             height: 48,
