@@ -1,0 +1,19 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=827846 to learn about workspace recommendations.
+	// Extension identifier format: ${publisher}.${name}. Example: vscode.csharp
+
+	// List of extensions which should be recommended for users of this workspace.
+	"recommendations": [
+		"coenraads.bracket-pair-colorizer-2",
+    "dart-code.dart-code",
+    "dracula-theme.theme-dracula",
+    "editorconfig.editorconfig",
+    "dart-code.flutter",
+    "pkief.material-icon-theme",
+    "albert.tabout"
+	],
+	// List of extensions recommended by VS Code that should not be recommended for users of this workspace.
+	"unwantedRecommendations": [
+
+	]
+}
