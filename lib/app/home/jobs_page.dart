@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:time_tracker_flutter_course/common_widgets/platform_alert_dialog.dart';
 import 'package:time_tracker_flutter_course/services/auth.dart';
+import 'package:time_tracker_flutter_course/services/database.dart';
 
-class HomePage extends StatelessWidget {
+class JobsPage extends StatelessWidget {
   Future<void> _signOut(BuildContext context) async {
     try {
       final auth = Provider.of<AuthBase>(context, listen: false);
@@ -26,11 +27,19 @@ class HomePage extends StatelessWidget {
     }
   }
 
+  Future<void> _createJob(BuildContext context) async {
+    final database = Provider.of<Database>(context, listen: false);
+    await database.createJob({
+      'name': 'Blogging',
+      'ratePerHour': 10,
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Page'),
+        title: Text('Jobs'),
         actions: <Widget>[
           FlatButton(
             child: Text(
@@ -43,6 +52,11 @@ class HomePage extends StatelessWidget {
             onPressed: () => _confirmSignOut(context),
           ),
         ],
+      ),
+      body: Center(child: const Text('ok'),),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () => _createJob(context),
       ),
     );
   }
