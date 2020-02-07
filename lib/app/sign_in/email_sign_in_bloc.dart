@@ -46,14 +46,29 @@ class EmailSignInBloc {
       if (_model.formType == EmailSignInFormType.signIn) {
         await auth.signInWithEmailAndPassword(_model.email, _model.password);
       } else {
-        await auth.createUserWithEmailAndPassword(_model.email, _model.password);
+        await auth.createUserWithEmailAndPassword(
+            _model.email, _model.password);
       }
     } catch (e) {
-      rethrow;
-    } finally {
       updateWith(
         isLoading: false,
       );
+
+      rethrow;
     }
+  }
+
+  void toggleFormType() {
+    var formType = _model.formType == EmailSignInFormType.signIn
+        ? EmailSignInFormType.register
+        : EmailSignInFormType.signIn;
+
+    updateWith(
+      email: '',
+      password: '',
+      formType: formType,
+      submitted: false,
+      isLoading: false,
+    );
   }
 }
