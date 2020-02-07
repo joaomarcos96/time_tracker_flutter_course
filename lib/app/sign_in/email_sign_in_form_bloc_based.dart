@@ -89,22 +89,6 @@ class _EmailSignInFormBlocBasedState extends State<EmailSignInFormBlocBased> {
     ];
   }
 
-  TextField _buildPasswordTextField(EmailSignInModel model) {
-    return TextField(
-      controller: _passwordController,
-      focusNode: _passwordFocusNode,
-      decoration: InputDecoration(
-        labelText: 'Password',
-        errorText: model.passwordErrorText,
-        enabled: !model.isLoading,
-      ),
-      obscureText: true,
-      textInputAction: TextInputAction.done,
-      onEditingComplete: _submit,
-      onChanged: (password) => widget.bloc.updateWith(password: password),
-    );
-  }
-
   TextField _buildEmailTextField(EmailSignInModel model) {
     return TextField(
       controller: _emailController,
@@ -124,20 +108,37 @@ class _EmailSignInFormBlocBasedState extends State<EmailSignInFormBlocBased> {
     );
   }
 
+  TextField _buildPasswordTextField(EmailSignInModel model) {
+    return TextField(
+      controller: _passwordController,
+      focusNode: _passwordFocusNode,
+      decoration: InputDecoration(
+        labelText: 'Password',
+        errorText: model.passwordErrorText,
+        enabled: !model.isLoading,
+      ),
+      obscureText: true,
+      textInputAction: TextInputAction.done,
+      onEditingComplete: _submit,
+      onChanged: (password) => widget.bloc.updateWith(password: password),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<EmailSignInModel>(
-        stream: widget.bloc.modelStream,
-        initialData: EmailSignInModel(),
-        builder: (context, snapshot) {
-          return Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisSize: MainAxisSize.min,
-              children: _buildChildren(snapshot.data),
-            ),
-          );
-        });
+      stream: widget.bloc.modelStream,
+      initialData: EmailSignInModel(),
+      builder: (context, snapshot) {
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.min,
+            children: _buildChildren(snapshot.data),
+          ),
+        );
+      },
+    );
   }
 }
